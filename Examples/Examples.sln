@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NullDereference", "Examples\NullDereference.csproj", "{E7EF016C-7245-4222-850A-CD8E3F13E856}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourceLeak", "ResourceLeak\ResourceLeak.csproj", "{484AEB5A-7C12-4890-8447-FAE922AA05AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7EF016C-7245-4222-850A-CD8E3F13E856}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7EF016C-7245-4222-850A-CD8E3F13E856}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7EF016C-7245-4222-850A-CD8E3F13E856}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7EF016C-7245-4222-850A-CD8E3F13E856}.Release|Any CPU.Build.0 = Release|Any CPU
+		{484AEB5A-7C12-4890-8447-FAE922AA05AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{484AEB5A-7C12-4890-8447-FAE922AA05AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{484AEB5A-7C12-4890-8447-FAE922AA05AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{484AEB5A-7C12-4890-8447-FAE922AA05AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0EA9EB2D-1650-40B7-AEAA-1EF4D6CF499F}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,24 @@
+name: 'Run C# Code Analyzer'
+description: 'Run C# Code Analyzer'
+inputs:
+  binary-path:
+    description: 'The path where the binaries (.dll and .pdb) are located.'
+    required: true
+  opt-out-telemetry:
+    description: 'Whether to opt out telemetry collection.'
+    required: false
+    default: false
+  repository:
+    description: 'Repository name.'
+    required: false
+    default: 'DidNotProvide'
+outputs:
+  results:
+    description: 'The analysis results'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.binary-path }}
+    - ${{ inputs.opt-out-telemetry }}
+    - ${{ inputs.repository}}
