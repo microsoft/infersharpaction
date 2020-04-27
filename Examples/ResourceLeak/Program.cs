@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
+using System.IO;
 
 namespace ResourceLeak
 {
@@ -6,7 +9,9 @@ namespace ResourceLeak
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var streamReader = new StreamReader("somefile.txt");
+            streamReader.ReadToEnd();
+            // FIXME: Should do streamReader.Close(), otherwise resource leak.
         }
     }
 }
