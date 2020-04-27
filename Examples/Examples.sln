@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NullDereference", "Examples\NullDereference.csproj", "{E7EF016C-7245-4222-850A-CD8E3F13E856}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NullDereference", "NullDereference\NullDereference.csproj", "{E7EF016C-7245-4222-850A-CD8E3F13E856}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourceLeak", "ResourceLeak\ResourceLeak.csproj", "{484AEB5A-7C12-4890-8447-FAE922AA05AB}"
 EndProject
