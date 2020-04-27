@@ -1,0 +1,26 @@
+name: Run examples as a GitHub Action
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-16.04
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.100'
+
+    - name: Build with dotnet
+      run: dotnet build Examples/Examples.sln
+    
+    - name: Run C# Code Analyzer
+      id: runcsharpcodeanalyzer
+      uses: ./
+      with:
+        binary-path: 'Examples'
+        repository: ${{ github.repository }}
+
+    - name: C# Code Analyzer analysis results
+      run: echo "${{ steps.runcsharpcodeanalyzer.outputs.results }}"
