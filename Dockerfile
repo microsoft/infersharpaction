@@ -1,4 +1,4 @@
-FROM xinshi/csharpcodeanalyzer:3631763-gf87ef4c8921d6d75aa05deaaf55af7c6337cdaa6
+FROM xinshi/csharpcodeanalyzer:3679978-ga6caad564ac88f986c774eed4d826c80cc8f2704
 
 COPY entrypoint.sh /entrypoint.sh
 
