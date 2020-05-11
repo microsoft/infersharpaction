@@ -14,6 +14,10 @@ jobs:
 
     - name: Build with dotnet
       run: dotnet build Examples/Examples.sln
+
+    - name: Get All Changed Files
+      id: files
+      uses: jitterbit/get-changed-files@v1
     
     - name: Run C# Code Analyzer
       id: runcsharpcodeanalyzer
@@ -21,6 +25,7 @@ jobs:
       with:
         binary-path: 'Examples'
         repository: ${{ github.repository }}
+        changed-files: ${{ steps.files.outputs.all }}
 
     - name: C# Code Analyzer analysis results
       run: echo "${{ steps.runcsharpcodeanalyzer.outputs.results }}"
