@@ -25,7 +25,6 @@ jobs:
       with:
         binary-path: 'Examples'
         repository: ${{ github.repository }}
-        changed-files: ${{ steps.files.outputs.all }}
 
     - name: C# Code Analyzer analysis results
       run: echo "${{ steps.runcsharpcodeanalyzer.outputs.results }}"
