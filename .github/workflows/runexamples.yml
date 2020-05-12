@@ -14,10 +14,6 @@ jobs:
 
     - name: Build with dotnet
       run: dotnet build Examples/Examples.sln
-
-    - name: Get All Changed Files
-      id: files
-      uses: jitterbit/get-changed-files@v1
     
     - name: Run C# Code Analyzer
       id: runcsharpcodeanalyzer
