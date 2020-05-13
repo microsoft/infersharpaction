@@ -18,14 +18,14 @@
 #### `binary-path`
 **Required** Path to the binary directory where it contains .dlls **and** .pdbs.
 
-#### `changed-files`
+#### `report-on-files`
 By default, the analyzer will report issues on all input binaries set to `binary-path`. If you prefer to show the warnings coming from a specific set of files (for example, changed files in a PR), provide a list of file paths in either space or comma delimited format, for example, _src/project1/class1.cs,src/project2/class2.cs_.
 
 #### `opt-out-telemetry`
 Your code or artifacts will never leave GitHub. We only collect non-sensitive information on the tool usage itself to help us improve the analyzer. Set to `true` if you would like to opt out.
 
 ## Report On Changed Files Only From PRs
-You can leverage any GitHub Action that gets all changed file paths from a PR (for example, [Get All Changed Files Action](https://github.com/marketplace/actions/get-all-changed-files)) and set it to `changed-files` like the following:
+You can leverage any GitHub Action that gets all changed file paths from a PR (for example, [Get All Changed Files Action](https://github.com/marketplace/actions/get-all-changed-files)) and set it to `report-on-files` like the following:
 ```yml
 - name: Get All Changed Files
   id: files
@@ -34,7 +34,7 @@ You can leverage any GitHub Action that gets all changed file paths from a PR (f
   with:
     binary-path: '<path to the binary directory where it contains .dlls and .pdbs>'
     repository: ${{ github.repository }}
-    changed-files: ${{ steps.files.outputs.all }}
+    report-on-files: ${{ steps.files.outputs.all }}
 - name: C# Code Analyzer analysis results
   run: echo "${{ steps.runcsharpcodeanalyzer.outputs.results }}"
 ```
