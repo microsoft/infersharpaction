@@ -12,8 +12,8 @@ inputs:
     description: 'Repository name.'
     required: false
     default: 'DidNotProvide'
-  changed-files:
-    description: 'Changed file paths for a PR.'
+  report-on-files:
+    description: 'Only report on the files specified.'
     required: false
     default: ''
 outputs:
@@ -26,4 +26,4 @@ runs:
     - ${{ inputs.binary-path }}
     - ${{ inputs.opt-out-telemetry }}
     - ${{ inputs.repository}}
-    - ${{ inputs.changed-files }}
+    - ${{ inputs.report-on-files }}
