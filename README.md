@@ -32,7 +32,7 @@ You can leverage any GitHub Action that gets all changed file paths from a PR (f
   uses: jitterbit/get-changed-files@v1
 - uses: microsoft/csharpcodeanalyzer@v0.1-beta
   with:
-    binary-path: '<path to your binary directory where it contains .dlls and .pdbs>'
+    binary-path: '<path to the binary directory where it contains .dlls and .pdbs>'
     repository: ${{ github.repository }}
     changed-files: ${{ steps.files.outputs.all }}
 - name: C# Code Analyzer analysis results
@@ -40,7 +40,7 @@ You can leverage any GitHub Action that gets all changed file paths from a PR (f
 ```
 
 ## Limitations
-- GitHub does not support hosting Linux containers on Windows at the time of this writing. Your CI pipeline needs to run on Linux. If your current CI pipeline runs on Windows, however, you can create a dependent workflow, using artifacts to transport the binaries to another Linux host to run the analysis. We are working on the next version to address this.
+- GitHub does not support hosting Linux containers on Windows at the time of this writing. Your CI pipeline needs to run on Linux. If your current CI pipeline runs on Windows, however, you can create a dependent workflow, using artifacts to transport the binaries to another Linux host to run the analysis.
 
 ## Known Issues
 - We don't have control over the build agents. If the project is too big, the analysis may time out. We are working on the next version to address this.
