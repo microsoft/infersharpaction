@@ -8,7 +8,7 @@
 ```yml
 - uses: microsoft/csharpcodeanalyzer@v0.1-beta
   with:
-    binary-path: '<path to your binary folder where it contains .dlls and .pdbs>'
+    binary-path: '<path to the binary directory where it contains .dlls and .pdbs>'
     repository: ${{ github.repository }}
 - name: C# Code Analyzer analysis results
   run: echo "${{ steps.runcsharpcodeanalyzer.outputs.results }}"
@@ -16,23 +16,23 @@
 
 ### Parameters
 #### `binary-path`
-**Required** Path to the binary folder where it contains .dlls **and** .pdbs.
+**Required** Path to the binary directory where it contains .dlls **and** .pdbs.
 
 #### `changed-files`
-By default, the analyzer will report issues on all input binaries you set to `binary-path`. If you prefer to show the warnings coming from a specific set of files (for example, changed files in a PR), provide a list of file paths in either space or comma separated format, for example, _src/project1/class1.cs,src/project2/class2.cs_.
+By default, the analyzer will report issues on all input binaries set to `binary-path`. If you prefer to show the warnings coming from a specific set of files (for example, changed files in a PR), provide a list of file paths in either space or comma delimited format, for example, _src/project1/class1.cs,src/project2/class2.cs_.
 
 #### `opt-out-telemetry`
-Your code or artifacts will never leave GitHub. We only collect non-sensitive information on the tool usage itself in an aggregated format to help us improve the analyzer. Set to true if you would like to opt out.
+Your code or artifacts will never leave GitHub. We only collect non-sensitive information on the tool usage itself to help us improve the analyzer. Set to `true` if you would like to opt out.
 
 ## Report On Changed Files Only From PRs
-You can leverage a GitHub Action that gets all changed file paths from a PR (for example, [Get All Changed Files Action](https://github.com/marketplace/actions/get-all-changed-files)) and set it to `changed-files` like the following:
+You can leverage any GitHub Action that gets all changed file paths from a PR (for example, [Get All Changed Files Action](https://github.com/marketplace/actions/get-all-changed-files)) and set it to `changed-files` like the following:
 ```yml
 - name: Get All Changed Files
   id: files
   uses: jitterbit/get-changed-files@v1
 - uses: microsoft/csharpcodeanalyzer@v0.1-beta
   with:
-    binary-path: '<path to your binary folder where it contains .dlls and .pdbs>'
+    binary-path: '<path to your binary directory where it contains .dlls and .pdbs>'
     repository: ${{ github.repository }}
     changed-files: ${{ steps.files.outputs.all }}
 - name: C# Code Analyzer analysis results
@@ -40,12 +40,12 @@ You can leverage a GitHub Action that gets all changed file paths from a PR (for
 ```
 
 ## Limitations
-- GitHub does not support hosting Linux containers on Windows at the time of this writing. Your CI pipeline needs to run in Linux. If your current CI pipeline runs on Windows, you can create a dependent workflow, using artifacts to transport the binaries to another Linux host to run the analysis. We are working on the next version to address this.
+- GitHub does not support hosting Linux containers on Windows at the time of this writing. Your CI pipeline needs to run on Linux. If your current CI pipeline runs on Windows, however, you can create a dependent workflow, using artifacts to transport the binaries to another Linux host to run the analysis. We are working on the next version to address this.
 
 ## Known Issues
-- We don't have control over the build agents. If the project is big, the analysis may time out. We are working on the next version to address this.
+- We don't have control over the build agents. If the project is too big, the analysis may time out. We are working on the next version to address this.
 
-- You may find warnings that are not from your own code. It is because that the third-party libraries the project uses may contain .pdb files. You may choose to remove those from the binaries folder before passing it to `binary-path` to exclude the analysis and speed up the time.
+- You may find warnings that are not from your own code, because the third-party libraries that the project references may contain .pdb files which will be analyzed as well. You may choose to either remove those unwanted .pdb files, or copy only the desired binaries to another directory and pass it to `binary-path` to exclude the unwanted analysis.
 
 ## Contributing
 
