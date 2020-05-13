@@ -2,7 +2,7 @@
 
 **C# Code Analyzer** is an inter-procedural and scalable static code analyzer for C#. We are bringing the capability of [Facebook's Infer](https://fbinfer.com/) into the .NET world. Currently it supports null pointer exception and resource leak.
 
-![alt text](https://github.com/microsoft/CSharpCodeAnalyzer/tree/master/assets/samplereport.png "Sample Report")
+![alt text](https://github.com/microsoft/CSharpCodeAnalyzer/blob/master/assets/samplereport.png "Sample Report")
 
 ## Basic Usage
 ```yml
