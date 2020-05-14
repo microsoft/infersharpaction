@@ -6,7 +6,7 @@
 
 ## Basic Usage
 ```yml
-- uses: microsoft/csharpcodeanalyzer@v0.1-beta
+- uses: microsoft/CSharpCodeAnalyzer@v0.1-beta
   with:
     binary-path: '<path to the binary directory where it contains .dlls and .pdbs>'
     repository: ${{ github.repository }}
@@ -30,7 +30,7 @@ You can leverage any GitHub Action that gets all changed file paths from a PR (f
 - name: Get All Changed Files
   id: files
   uses: jitterbit/get-changed-files@v1
-- uses: microsoft/csharpcodeanalyzer@v0.1-beta
+- uses: microsoft/CSharpCodeAnalyzer@v0.1-beta
   with:
     binary-path: '<path to the binary directory where it contains .dlls and .pdbs>'
     repository: ${{ github.repository }}
