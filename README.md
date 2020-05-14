@@ -6,7 +6,9 @@
 
 ## Basic Usage
 ```yml
-- uses: microsoft/CSharpCodeAnalyzer@v0.1-beta
+- name: Run C# Code Analyzer      
+  uses: microsoft/CSharpCodeAnalyzer@v0.1-beta
+  id: runcsharpcodeanalyzer
   with:
     binary-path: '<path to the binary directory where it contains .dlls and .pdbs>'
     repository: ${{ github.repository }}
@@ -30,7 +32,9 @@ You can leverage any GitHub Action that gets all changed file paths from a PR (f
 - name: Get All Changed Files
   id: files
   uses: jitterbit/get-changed-files@v1
-- uses: microsoft/CSharpCodeAnalyzer@v0.1-beta
+- name: Run C# Code Analyzer      
+  uses: microsoft/CSharpCodeAnalyzer@v0.1-beta
+  id: runcsharpcodeanalyzer
   with:
     binary-path: '<path to the binary directory where it contains .dlls and .pdbs>'
     repository: ${{ github.repository }}
@@ -46,8 +50,6 @@ You can leverage any GitHub Action that gets all changed file paths from a PR (f
 - We don't have control over the build agents. If the project is too big, the analysis may time out. We are working on the next version to address this.
 
 - You may find warnings that are not from your own code, because the third-party libraries that the project references may contain .pdb files which will be analyzed as well. You may choose to either remove those unwanted .pdb files, or copy only the desired binaries to another directory and pass it to `binary-path` to exclude the unwanted analysis.
-
-- The line number from the warnings may not be 100% accurate due to possible complier optimization.
 
 ## Contributing
 
