@@ -47,6 +47,8 @@ You can leverage any GitHub Action that gets all changed file paths from a PR (f
 
 - You may find warnings that are not from your own code, because the third-party libraries that the project references may contain .pdb files which will be analyzed as well. You may choose to either remove those unwanted .pdb files, or copy only the desired binaries to another directory and pass it to `binary-path` to exclude the unwanted analysis.
 
+- The line number from the warnings may not be 100% accurate due to possible complier optimization.
+
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
