@@ -1,5 +1,5 @@
-name: 'Run C# Code Analyzer'
-description: 'Run C# Code Analyzer'
+name: 'C# Code Analyzer'
+description: 'Inter-procedural static code analyzer for C#'
 inputs:
   binary-path:
     description: 'The path where the binaries (.dll and .pdb) are located.'
