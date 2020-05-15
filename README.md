@@ -24,7 +24,7 @@
 By default, the analyzer will report issues on all input binaries set to `binary-path`. If you prefer to show the warnings coming from a specific set of files (for example, changed files in a PR), provide a list of file paths in either space or comma-delimited format, for example, _src/project1/class1.cs,src/project2/class2.cs_.
 
 #### `opt-out-telemetry`
-Your code or artifacts will never leave GitHub. We only collect non-sensitive usage data to help us improve the analysis. Set to `true` if you would like to opt out.
+Your code or artifacts will never leave GitHub. We only collect non-identifiable usage data to help us improve the analysis. Set to `true` if you would like to opt out.
 
 ## Report On Changed Files Only From PRs
 Our tool can be tuned to analyze only the changed files in a pull request. To do this, select any Github Action which retrieves the changed files in a pull request (for example, [Get All Changed Files Action](https://github.com/marketplace/actions/get-all-changed-files)) and configure it to `report-on-files` as follows:
