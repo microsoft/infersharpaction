@@ -4,6 +4,8 @@ A simple example of **procedure-local bug of resource leak** is a resource leak 
 
 Based on the nature of procedure-local bugs of resource leaks, **CSharpCodeAnalyzer** is capable of detecting resource leaks in the following scenarios that are unrelated to multi-threading:
 
+## Supported scenarios
+
 ### 1. Standard idioms: 
 
 Some objects in C#, the resources, are supposed to be disposed when you stop using them, and failure to dispose is a resource leak. Resources include input streams, output streams, readers, writers, sockets, http connections, cursors, json parsers, etc. The following code snippet shows a *ReaderStream* object is created and disposed. 
