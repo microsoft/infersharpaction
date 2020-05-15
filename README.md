@@ -1,6 +1,6 @@
 # C# Code Analyzer
 
-**C# Code Analyzer** is an inter-procedural and scalable static code analyzer for C#. We are bringing the capability of [Facebook's Infer](https://fbinfer.com/) into the .NET world. Currently it supports null pointer exception and resource leak.
+**C# Code Analyzer** is an interprocedural and scalable static code analyzer for C#. Via the capabilities of Facebook's [Infer](https://fbinfer.com/), we detect null pointer dereferences and resource leaks.
 
 ![alt text](https://github.com/microsoft/CSharpCodeAnalyzer/blob/master/assets/samplereport.png "Sample Report")
 
@@ -18,16 +18,16 @@
 
 ### Parameters
 #### `binary-path`
-**Required** Path to the binary directory where it contains .dlls **and** .pdbs.
+**Required** Path to the binary directory containing .dlls **and** .pdbs.
 
 #### `report-on-files`
-By default, the analyzer will report issues on all input binaries set to `binary-path`. If you prefer to show the warnings coming from a specific set of files (for example, changed files in a PR), provide a list of file paths in either space or comma delimited format, for example, _src/project1/class1.cs,src/project2/class2.cs_.
+By default, the analyzer will report issues on all input binaries set to `binary-path`. If you prefer to show the warnings coming from a specific set of files (for example, changed files in a PR), provide a list of file paths in either space or comma-delimited format, for example, _src/project1/class1.cs,src/project2/class2.cs_.
 
 #### `opt-out-telemetry`
-Your code or artifacts will never leave GitHub. We only collect non-sensitive information on the tool usage itself to help us improve the analyzer. Set to `true` if you would like to opt out.
+Your code or artifacts will never leave GitHub. We only collect non-sensitive usage data to help us improve the analysis. Set to `true` if you would like to opt out.
 
 ## Report On Changed Files Only From PRs
-You can leverage any GitHub Action that gets all changed file paths from a PR (for example, [Get All Changed Files Action](https://github.com/marketplace/actions/get-all-changed-files)) and set it to `report-on-files` like the following:
+Our tool can be tuned to analyze only the changed files in a pull request. To do this, select any Github Action which retrieves the changed files in a pull request (for example, [Get All Changed Files Action](https://github.com/marketplace/actions/get-all-changed-files)) and configure it to `report-on-files` as follows:
 ```yml
 - name: Get All Changed Files
   id: files
@@ -44,12 +44,12 @@ You can leverage any GitHub Action that gets all changed file paths from a PR (f
 ```
 
 ## Limitations
-- GitHub does not support hosting Linux containers on Windows at the time of this writing. Your CI pipeline needs to run on Linux. If your current CI pipeline runs on Windows, however, you can create a dependent workflow, using artifacts to transport the binaries to another Linux host to run the analysis.
+- GitHub does not support Linux containers hosted on Windows at the time of this writing; your CI pipeline must run on Linux. If it doesn't, you may still use our tool by creating a dependent workflow which transports the binaries to a Linux host on which to run the analysis.
 
 ## Known Issues
-- We don't have control over the build agents. If the project is too big, the analysis may time out. We are working on the next version to address this.
+- We lack control over the build agents. If the project is too big, the analysis may time out.
 
-- You may find warnings that are not from your own code, because the third-party libraries that the project references may contain .pdb files which will be analyzed as well. You may choose to either remove those unwanted .pdb files, or copy only the desired binaries to another directory and pass it to `binary-path` to exclude the unwanted analysis.
+- You may find warnings that are not from your own code. This is because the analysis will run on all input .pdbs, including those corresponding to third-party library references. To prevent this, you may either remove such .pdbs, or you may isolate the desired binaries in a directory and pass its filepath to `binary-path`.
 
 ## Contributing
 
@@ -58,7 +58,7 @@ Contributor License Agreement (CLA) declaring that you have the right to, and ac
 the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
 
 When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
+a CLA and will decorate the PR appropriately (for example -- status check, comment). Simply follow the instructions
 provided by the bot. You will only need to do this once across all repos using our CLA.
 
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
