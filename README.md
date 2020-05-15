@@ -48,7 +48,7 @@ The tool can be tuned to analyze only the changed files in a pull request. To do
 
 - If the project is too large, the analysis may time out.
 
-- The analyzer may report warnings outside of your own code. This is because it runs on all input .pdbs, including those corresponding to third-party library references. To prevent this, you may either remove such .pdbs, or you may isolate the desired binaries in a directory and pass its filepath to `binary-path`.
+- The analyzer may report warnings outside of your own code. This is because it runs on all input .pdbs, including those belonging to third-party library references. To prevent this, isolate the desired binaries in the input `binary-path` directory.
 
 ## Contributing
 
