@@ -21,7 +21,7 @@
 **Required** Path to the binary directory containing .dlls **and** .pdbs.
 
 #### `report-on-files`
-By default, the analyzer will report issues on all input binaries set to `binary-path`. If you prefer to see the warnings on a specific set of files (for example, changed files in a PR), provide a comma or space-delimited list of file paths -- for example, _src/project1/class1.cs,src/project2/class2.cs_.
+By default, the analyzer will report issues on all input binaries set to `binary-path`. If you prefer to see the warnings on a specific set of files (for example, changed files in a PR), provide a list of file paths delimited either by spaces or commas; for example, _src/project1/class1.cs,src/project2/class2.cs_.
 
 #### `opt-out-telemetry`
 Your code or artifacts will never leave GitHub, and the analyzer will not collect any personally-identifiable information. It exclusively collects usage data that would help improve the analysis. Set to `true` if you would like to opt out.
