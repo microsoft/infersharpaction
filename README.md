@@ -1,6 +1,6 @@
 # C# Code Analyzer
 
-**C# Code Analyzer** is an inter-procedural and scalable static code analyzer for C#. We are bringing the capability of [Facebook's Infer](https://fbinfer.com/) into the .NET world. Currently it supports null pointer exception and [resource leak](Examples/ResourceLeak/README.md).
+**C# Code Analyzer** is an interprocedural and scalable static code analyzer for C#. Via the capabilities of Facebook's [Infer](https://fbinfer.com/), this tool detects null pointer dereferences and [resource leak](Examples/ResourceLeak/README.md).
 
 ![alt text](https://github.com/microsoft/CSharpCodeAnalyzer/blob/master/assets/samplereport.png "Sample Report")
 
@@ -18,16 +18,16 @@
 
 ### Parameters
 #### `binary-path`
-**Required** Path to the binary directory where it contains .dlls **and** .pdbs.
+**Required** Path to the binary directory containing .dlls **and** .pdbs.
 
 #### `report-on-files`
-By default, the analyzer will report issues on all input binaries set to `binary-path`. If you prefer to show the warnings coming from a specific set of files (for example, changed files in a PR), provide a list of file paths in either space or comma delimited format, for example, _src/project1/class1.cs,src/project2/class2.cs_.
+By default, the analyzer will report issues on all input binaries set to `binary-path`. If you prefer to see the warnings on a specific set of files (for example, changed files in a PR), provide a list of file paths delimited either by spaces or commas; for example, _src/project1/class1.cs,src/project2/class2.cs_.
 
 #### `opt-out-telemetry`
-Your code or artifacts will never leave GitHub. We only collect non-sensitive information on the tool usage itself to help us improve the analyzer. Set to `true` if you would like to opt out.
+Your code or artifacts will never leave GitHub, and the analyzer will not collect any personally-identifiable information. It exclusively collects usage data that would help improve the analysis. Set to `true` if you would like to opt out.
 
 ## Report On Changed Files Only From PRs
-You can leverage any GitHub Action that gets all changed file paths from a PR (for example, [Get All Changed Files Action](https://github.com/marketplace/actions/get-all-changed-files)) and set it to `report-on-files` like the following:
+The tool can be tuned to analyze only the changed files in a pull request. To do this, select any Github Action which retrieves the changed files in a pull request (for example, [Get All Changed Files Action](https://github.com/marketplace/actions/get-all-changed-files)) and configure it to `report-on-files` as follows:
 ```yml
 - name: Get All Changed Files
   id: files
@@ -44,12 +44,11 @@ You can leverage any GitHub Action that gets all changed file paths from a PR (f
 ```
 
 ## Limitations
-- GitHub does not support hosting Linux containers on Windows at the time of this writing. Your CI pipeline needs to run on Linux. If your current CI pipeline runs on Windows, however, you can create a dependent workflow, using artifacts to transport the binaries to another Linux host to run the analysis.
+- GitHub does not currently support Linux containers hosted on Windows; your CI pipeline must run on Linux. If it doesn't, you may still apply the analyzer by creating a dependent workflow which transports the binaries to a Linux host on which to run the analysis.
 
-## Known Issues
-- We don't have control over the build agents. If the project is too big, the analysis may time out. We are working on the next version to address this.
+- If the project is too large, the analysis may time out.
 
-- You may find warnings that are not from your own code, because the third-party libraries that the project references may contain .pdb files which will be analyzed as well. You may choose to either remove those unwanted .pdb files, or copy only the desired binaries to another directory and pass it to `binary-path` to exclude the unwanted analysis.
+- The analyzer may report warnings outside of your own code. This is because it runs on all input .pdbs, including those belonging to third-party library references. To prevent this, isolate the desired binaries in the input `binary-path` directory.
 
 ## Contributing
 
