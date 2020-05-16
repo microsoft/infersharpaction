@@ -1,6 +1,6 @@
 ## Procedure-local Bugs of Resource Leaks
 
-A simple example of **procedure-local bug of resource leak** is a resource leak in the context of incomplete code (e.g. without main) with inter-procedural reasoning. In this case, the usual notion that all resource allocated must be eventually freed does not apply in the context of incomplete code. **CSharpCodeAnalyzer** is designed to detect this kind of resource leaks by applying the following principle: **When a new object is allocated during the execution of a procedure, it is the procedure’s responsibility to either deallocate the object or make it available to its callers; there is no such obligation for objects received from the caller.** 
+In this case, the usual notion that all resource allocated must be eventually freed does not apply in the context of incomplete code. **CSharpCodeAnalyzer** is designed to detect this kind of resource leaks by applying the following principle: **When a new object is allocated during the execution of a procedure, it is the procedure’s responsibility to either deallocate the object or make it available to its callers; there is no such obligation for objects received from the caller.** 
 
 Based on the nature of procedure-local bugs of resource leaks, **CSharpCodeAnalyzer** is capable of detecting resource leaks in the following scenarios that are unrelated to multi-threading:
 
