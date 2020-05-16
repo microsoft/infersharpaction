@@ -1,5 +1,5 @@
 name: 'C# Code Analyzer'
-description: 'Inter-procedural static code analyzer for C#'
+description: 'Scalable and interprocedural code analyzer for detecting memory safety issues such as null pointer derefs and resource leaks'
 inputs:
   binary-path:
     description: 'The path where the binaries (.dll and .pdb) are located.'
