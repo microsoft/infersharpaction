@@ -6,14 +6,14 @@
 
 ### 1. Standard idioms: 
 
-Some objects in C#, the resources, are supposed to be disposed when you stop using them, and failure to dispose is a resource leak. Resources include input streams, output streams, readers, writers, sockets, http connections, cursors, json parsers, etc. The following code snippet shows a `ReaderStream` object is created and disposed. 
+Some objects in C#, the resources, are supposed to be disposed when you stop using them, and failure to dispose is a resource leak. Resources include input streams, output streams, readers, writers, sockets, http connections, cursors, json parsers, etc. The following code snippet shows a `StreamReader` object is created and disposed. 
 
 ```c#
-public void ResourceLeakIntraproceduralOK(){
-    string data;
-    StreamReader sr = new StreamReader("whatever.txt");            
-    data = sr.ReadToEnd();
-    sr.Close();
+public void ResourceLeakBad(){
+    StreamReader sr = new StreamReader("whatever.txt");  
+    string data = sr.ReadToEnd();
+    Console.WriteLine(data);
+    // FIXME: should close the stream by calling sr.Close().
 }
 ```
 							
