@@ -1,12 +1,12 @@
 ## Procedure-local Bugs of Resource Leaks
 
-**CSharpCodeAnalyzer** is designed to detect this kind of resource leaks by applying the following principle: **When a new object is allocated during the execution of a procedure, it is the procedure’s responsibility to either deallocate the object or make it available to its callers; there is no such obligation for objects received from the caller.** 
+**CSharpCodeAnalyzer** is able to detect resource leaks which include the C# scenarios outlined below. For further detail on its capabilities, see [here](http://www.eecs.qmul.ac.uk/~ddino/papers/nasa-infer.pdf). 
 
 ## Supported scenarios
 
-### 1. Standard idioms: 
+### 1. Deallocation of IDisposable Local Variables: 
 
-Some objects in C#, the resources, are supposed to be disposed when you stop using them, and failure to dispose is a resource leak. Resources include input streams, output streams, readers, writers, sockets, http connections, cursors, json parsers, etc. The following code snippet shows a `StreamReader` object is created and disposed. 
+Instances of classes deriving from IDisposable (such as input streams, output streams, http connections, and cursors) create resource leaks if they are not closed or disposed of.
 
 ```c#
 public void ResourceLeakBad(){
@@ -17,8 +17,8 @@ public void ResourceLeakBad(){
 }
 ```
 							
-### 2. Nested allocations: 
-When a resource allocation is included as an argument to a constructor, if the constructor fails it can leave an an unreachable resource that no one can dispose.
+### 2. Resource Allocation in Method Invocation: 
+When a resource allocation is included as an argument to a constructor/method invocation, if this constructor/method invocation fails it can leave an an unreachable resource that no one can dispose.
 	
 The following example 
 ```c#
@@ -26,8 +26,8 @@ var gzipStream = new GZipStream(new FileStream(out, FileMode.Create), Compressio
 ```
 is bad in case the outer constructor, `GZipStream`, throws an exception. In that case, no one will have a hold of the `FileStream` and so no one will be able to dispose it.
 	
-### 3. Allocation of Cursor resources:
-Some resources are created insider libraries instead of by "new". For instance,
+### 3. Resource Allocation inside libraries:
+Some resources are created inside libraries instead of by "new". For instance,
 ```c#
 ICursor cursor = SQLiteDatabase.Query(…)
 ```
