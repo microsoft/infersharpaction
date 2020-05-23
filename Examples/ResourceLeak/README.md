@@ -33,7 +33,7 @@ ICursor cursor = SQLiteDatabase.Query(…)
 ```
 allocates a `ICursor` resource. The `ICursor` object *cursor* created needs to be disposed (i.e., `cursor.Dispose()`).
 	
-### 4. Escaping resources and exceptions:
+### 4. Escaping Resources and Exceptions:
 Sometimes you want to return a resource to the outside, in which case you should not dispose it, but you still need to be careful of exceptions in case control skips past the return leaving no one to dispose. In the following example
 ```c#
  public StreamWriter allocateStreamWriter() {
