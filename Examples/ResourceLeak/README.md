@@ -1,6 +1,6 @@
 ## Procedure-local Bugs of Resource Leaks
 
-**CSharpCodeAnalyzer** is able to detect resource leaks which include the C# scenarios outlined below. For further detail on its capabilities, see [here](http://www.eecs.qmul.ac.uk/~ddino/papers/nasa-infer.pdf). 
+**CSharpCodeAnalyzer** is able to detect resource leaks which include the C# scenarios enumerated below. For further detail on its capabilities, see [here](http://www.eecs.qmul.ac.uk/~ddino/papers/nasa-infer.pdf). 
 
 ## Supported scenarios
 
@@ -18,13 +18,10 @@ public void ResourceLeakBad(){
 ```
 							
 ### 2. Resource Allocation in Method Invocation: 
-When a resource allocation is included as an argument to a constructor/method invocation, if this constructor/method invocation fails it can leave an an unreachable resource that no one can dispose.
-	
-The following example 
+Resources allocated as arguments within method (including constructor) invocations will leak if the invocations throw an exception: in the below example, the allocated `FileStream` leaks if the `GZipStream` constructor throws an exception.	
 ```c#
 var gzipStream = new GZipStream(new FileStream(out, FileMode.Create), CompressionMode.Compress);
 ```
-is bad in case the outer constructor, `GZipStream`, throws an exception. In that case, no one will have a hold of the `FileStream` and so no one will be able to dispose it.
 	
 ### 3. Resource Allocation inside libraries:
 Some resources are created inside libraries instead of by "new". For instance,
