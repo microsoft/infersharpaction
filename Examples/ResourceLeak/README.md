@@ -18,20 +18,23 @@ public void ResourceLeakBad(){
 ```
 							
 ### 2. Resource Allocation in Method Invocation: 
-Resources allocated as arguments within method (including constructor) invocations will leak if the invocations throw an exception: in the below example, the allocated `FileStream` leaks if the `GZipStream` constructor throws an exception.	
+Resource leaks may occur when a resource is allocated as an argument of a method invocation (including methods which allocate resources such as constructors); should an exception occur during the method invocation, the resource will leak.	
+
+For example, in the following example:
 ```c#
 var gzipStream = new GZipStream(new FileStream(out, FileMode.Create), CompressionMode.Compress);
 ```
+Should the new GZipStream(...) constructor throw an exception, the allocated FileStream resource will leak.
 	
 ### 3. Resource Allocation inside libraries:
 Some resources are created inside libraries instead of by "new". For instance,
 ```c#
 ICursor cursor = SQLiteDatabase.Query(…)
 ```
-allocates a `ICursor` resource. The `ICursor` object *cursor* created needs to be disposed (i.e., `cursor.Dispose()`).
+allocated `ICursor` resource will leak if it is not disposed.
 	
 ### 4. Escaping Resources and Exceptions:
-Sometimes you want to return a resource to the outside, in which case you should not dispose it, but you still need to be careful of exceptions in case control skips past the return leaving no one to dispose. In the following example
+Resources may leak should the control flow short-circuit past a method's return statemen. In the following example
 ```c#
  public StreamWriter allocateStreamWriter() {
     FileStream fs = File.Create("everwhat.txt");
@@ -40,4 +43,4 @@ Sometimes you want to return a resource to the outside, in which case you should
     return new StreamWriter(fs);
 }
 ```
-if `fs.Write(info, 0, info.Length);` throws an exception, then no one will have a hold of `FileStream` *fs*, and no one will be able to close it.
+if `fs.Write(info, 0, info.Length);` throws an exception, *fs* will leak.
