@@ -20,21 +20,20 @@ public void ResourceLeakBad(){
 ### 2. Resource Allocation in Method Invocation: 
 Resource leaks may occur when a resource is allocated as an argument of a method invocation (including methods which allocate resources such as constructors); should an exception occur during the method invocation, the resource will leak.	
 
-For example, in the following example:
+For example, if the GZipStream constructor invocation below throws an exception, the allocated FileStream resource will leak.
 ```c#
 var gzipStream = new GZipStream(new FileStream(out, FileMode.Create), CompressionMode.Compress);
 ```
-Should the new GZipStream(...) constructor throw an exception, the allocated FileStream resource will leak.
 	
 ### 3. Resource Allocation inside libraries:
-Some resources are created inside libraries instead of by "new". For instance,
+Some resources are created within non-constructor methods. For example, the `Icursor` resource in the below example will leak if it is not disposed.
 ```c#
 ICursor cursor = SQLiteDatabase.Query(…)
 ```
-allocated `ICursor` resource will leak if it is not disposed.
 	
 ### 4. Escaping Resources and Exceptions:
-Resources may leak should the control flow short-circuit past a method's return statemen. In the following example
+Resources may leak should the control flow short-circuit past a method's return statement. In the below example, if
+`fs.Write(info, 0, info.Length);` throws an exception, *fs* will leak.
 ```c#
  public StreamWriter allocateStreamWriter() {
     FileStream fs = File.Create("everwhat.txt");
@@ -43,4 +42,3 @@ Resources may leak should the control flow short-circuit past a method's return 
     return new StreamWriter(fs);
 }
 ```
-if `fs.Write(info, 0, info.Length);` throws an exception, *fs* will leak.
