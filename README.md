@@ -1,6 +1,6 @@
 # C# Code Analyzer
 
-**C# Code Analyzer** is an interprocedural and scalable static code analyzer for C#. Via the capabilities of Facebook's [Infer](https://fbinfer.com/), this tool detects null pointer dereferences and [resource leak](Examples/ResourceLeak/README.md).
+**C# Code Analyzer** is an interprocedural and scalable static code analyzer for C#. Via the capabilities of Facebook's [Infer](https://fbinfer.com/), this tool detects null pointer dereferences and [resource leak](Examples/ResourceLeak/README.md). Its source code can be found [here](https://github.com/microsoft/infersharp).
 
 ![alt text](https://github.com/microsoft/CSharpCodeAnalyzer/blob/master/assets/samplereport.png "Sample Report")
 
@@ -10,8 +10,7 @@
   uses: microsoft/CSharpCodeAnalyzer@v0.1-beta
   id: runcsharpcodeanalyzer
   with:
-    binary-path: '<path to the binary directory where it contains .dlls and .pdbs>'
-    repository: ${{ github.repository }}
+    binary-path: '<path to the binary directory containing .dlls and .pdbs>'
 - name: C# Code Analyzer analysis results
   run: echo "${{ steps.runcsharpcodeanalyzer.outputs.results }}"
 ```
@@ -22,9 +21,6 @@
 
 #### `report-on-files`
 By default, the analyzer will report issues on all input binaries set to `binary-path`. If you prefer to see the warnings on a specific set of files (for example, changed files in a PR), provide a list of file paths delimited either by spaces or commas; for example, _src/project1/class1.cs,src/project2/class2.cs_.
-
-#### `opt-out-telemetry`
-Your code or artifacts will never leave GitHub, and the analyzer will not collect any personally-identifiable information. It exclusively collects usage data that would help improve the analysis. Set to `true` if you would like to opt out.
 
 ## Report On Changed Files Only From PRs
 The tool can be tuned to analyze only the changed files in a pull request. To do this, select any Github Action which retrieves the changed files in a pull request (for example, [Get All Changed Files Action](https://github.com/marketplace/actions/get-all-changed-files)) and configure it to `report-on-files` as follows:
@@ -37,7 +33,6 @@ The tool can be tuned to analyze only the changed files in a pull request. To do
   id: runcsharpcodeanalyzer
   with:
     binary-path: '<path to the binary directory where it contains .dlls and .pdbs>'
-    repository: ${{ github.repository }}
     report-on-files: ${{ steps.files.outputs.all }}
 - name: C# Code Analyzer analysis results
   run: echo "${{ steps.runcsharpcodeanalyzer.outputs.results }}"
