@@ -2,15 +2,14 @@
 
 echo "Running C# Code Analyzer..."
 sudo mkdir codeanalyzerinputbinaries
-sudo cp -r $1 /app/Cilsil/bin/Debug/netcoreapp2.2/ubuntu.16.10-x64/publish/System.Private.CoreLib.dll codeanalyzerinputbinaries   
+sudo cp -r $1 /app/Cilsil/System.Private.CoreLib.dll codeanalyzerinputbinaries   
 sudo infer capture
 sudo mkdir infer-out/captured
-sudo dotnet /app/Cilsil/bin/Debug/netcoreapp2.2/Cilsil.dll translate codeanalyzerinputbinaries --outcfg cfg.json --outtenv tenv.json
+sudo dotnet /app/Cilsil/Cilsil.dll translate codeanalyzerinputbinaries --outcfg cfg.json --outtenv tenv.json
 sudo infer analyzejson --debug --cfg-json cfg.json --tenv-json tenv.json
 sudo chmod -R 777 infer-out/
-reportonfiles=$(echo $4 | sed 's/ /,/g')
-sudo dotnet /app/AnalysisResultParser/AnalysisResultParser/bin/Debug/netcoreapp2.2/AnalysisResultParser.dll infer-out/bugs.txt infer-out/filtered_bugs.txt $reportonfiles
-sudo dotnet /app/TelemetrySender/TelemetrySender/bin/Debug/netcoreapp2.2/TelemetrySender.dll GitHub $2 $3 infer-out/bugs.txt
+reportonfiles=$(echo $2 | sed 's/ /,/g')
+sudo dotnet /app/AnalysisResultParser/AnalysisResultParser.dll infer-out/bugs.txt infer-out/filtered_bugs.txt $reportonfiles
 
 var="$( cat infer-out/filtered_bugs.txt )"
 var="${var//'%'/'%25'}"

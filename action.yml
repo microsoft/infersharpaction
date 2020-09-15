@@ -4,14 +4,6 @@ inputs:
   binary-path:
     description: 'The path where the binaries (.dll and .pdb) are located.'
     required: true
-  opt-out-telemetry:
-    description: 'Whether to opt out telemetry collection.'
-    required: false
-    default: false
-  repository:
-    description: 'Repository name.'
-    required: false
-    default: 'DidNotProvide'
   report-on-files:
     description: 'Only report on the files specified.'
     required: false
@@ -24,6 +16,4 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.binary-path }}
-    - ${{ inputs.opt-out-telemetry }}
-    - ${{ inputs.repository}}
     - ${{ inputs.report-on-files }}
