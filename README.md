@@ -22,8 +22,8 @@
 #### `report-on-files`
 By default, the analyzer will report issues on all input binaries set to `binary-path`. If you prefer to see the warnings on a specific set of files (for example, changed files in a PR), provide a list of file paths delimited either by spaces or commas; for example, _src/project1/class1.cs,src/project2/class2.cs_.
 
-## Report On Changed Files Only From PRs
-The tool can be tuned to analyze only the changed files in a pull request. To do this, select any Github Action which retrieves the changed files in a pull request (for example, [Get All Changed Files Action](https://github.com/marketplace/actions/get-all-changed-files)) and configure it to `report-on-files` as follows:
+## Report On Changed Files Only From Pull Requests
+The tool can be tuned to analyze only the changed files in a pull request (PR). To do this, select any Github Action which retrieves the changed files in a pull request (for example, [Get All Changed Files Action](https://github.com/marketplace/actions/get-all-changed-files)) and configure it to `report-on-files` as follows:
 ```yml
 - name: Get All Changed Files
   id: files
