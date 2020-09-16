@@ -8,7 +8,7 @@ In each of the following cases, we describe a resource leak which would be ident
 
 ### 1. Deallocation of IDisposable Local Variables: 
 
-Instances of classes deriving from IDisposable (such as input streams, output streams, http connections, and cursors) create resource leaks if they are not closed or disposed of.
+Instances of classes deriving from IDisposable (such as input streams, output streams, HTTP connections, and cursors) create resource leaks if they are not closed or disposed of.
 
 ```c#
 public void ResourceLeakBad(){
