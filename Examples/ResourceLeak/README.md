@@ -1,8 +1,10 @@
 ## Procedure-local Bugs of Resource Leaks
 
-**CSharpCodeAnalyzer** is able to detect resource leaks which include the C# scenarios enumerated below. For further detail on its capabilities, see [here](http://www.eecs.qmul.ac.uk/~ddino/papers/nasa-infer.pdf). 
+**CSharpCodeAnalyzer** is able to detect resource leaks. Supported scenarios include those enumerated below. For further detail on the analysis capabilities of this tool, see [here](http://www.eecs.qmul.ac.uk/~ddino/papers/nasa-infer.pdf). 
 
 ## Supported scenarios
+
+In each of the following cases, we describe a resource leak which would be identified by CSharpCodeAnalyzer.
 
 ### 1. Deallocation of IDisposable Local Variables: 
 
@@ -26,7 +28,7 @@ var gzipStream = new GZipStream(new FileStream(out, FileMode.Create), Compressio
 ```
 	
 ### 3. Resource Allocation inside libraries:
-Some resources are created within non-constructor methods. For example, the `Icursor` resource in the below example will leak if it is not disposed.
+Some leakable resources are created within non-constructor methods. For example, the `Icursor` resource in the below example will leak if it is not disposed.
 ```c#
 ICursor cursor = SQLiteDatabase.Query(…)
 ```
