@@ -7,7 +7,7 @@
 ## Basic Usage
 ```yml
 - name: Run C# Code Analyzer      
-  uses: microsoft/CSharpCodeAnalyzer@v0.1-beta
+  uses: microsoft/CSharpCodeAnalyzer@v0.1
   id: runcsharpcodeanalyzer
   with:
     binary-path: '<path to the binary directory containing .dlls and .pdbs>'
@@ -29,7 +29,7 @@ The tool can be tuned to analyze only the changed files in a pull request (PR). 
   id: files
   uses: jitterbit/get-changed-files@v1
 - name: Run C# Code Analyzer      
-  uses: microsoft/CSharpCodeAnalyzer@v0.1-beta
+  uses: microsoft/CSharpCodeAnalyzer@v0.1
   id: runcsharpcodeanalyzer
   with:
     binary-path: '<path to the binary directory where it contains .dlls and .pdbs>'
