@@ -28,7 +28,7 @@ var gzipStream = new GZipStream(new FileStream(out, FileMode.Create), Compressio
 ```
 	
 ### 3. Resource Allocation inside libraries:
-Some leakable resources are created within non-constructor methods. For example, the `Icursor` resource in the below example will leak if it is not disposed.
+Some leakable resources are created within non-constructor methods. For example, the `ICursor` resource in the below example will leak if it is not disposed.
 ```c#
 ICursor cursor = SQLiteDatabase.Query(…)
 ```
