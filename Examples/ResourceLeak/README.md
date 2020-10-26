@@ -1,4 +1,4 @@
-## Procedure-local Bugs of Resource Leaks
+## Resource Leak Detection Capabilities
 
 **CSharpCodeAnalyzer** is able to detect resource leaks. Supported scenarios include those enumerated below. For further detail on the analysis capabilities of this tool, see [here](http://www.eecs.qmul.ac.uk/~ddino/papers/nasa-infer.pdf). 
 
@@ -27,7 +27,7 @@ For example, if the GZipStream constructor invocation below throws an exception,
 var gzipStream = new GZipStream(new FileStream(out, FileMode.Create), CompressionMode.Compress);
 ```
 	
-### 3. Resource Allocation inside libraries:
+### 3. Resource Allocation Inside Libraries:
 Some leakable resources are created within non-constructor methods. For example, the `ICursor` resource in the below example will leak if it is not disposed.
 ```c#
 ICursor cursor = SQLiteDatabase.Query(…)
