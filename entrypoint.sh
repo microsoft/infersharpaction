@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Running C# Code Analyzer..."
+echo "Running Infer#..."
 sudo mkdir codeanalyzerinputbinaries
 sudo cp -r $1 /app/Cilsil/System.Private.CoreLib.dll codeanalyzerinputbinaries   
 sudo infer capture

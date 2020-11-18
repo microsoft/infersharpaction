@@ -1,10 +1,10 @@
 ## Resource Leak Detection Capabilities
 
-**CSharpCodeAnalyzer** is able to detect resource leaks. Supported scenarios include those enumerated below. For further detail on the analysis capabilities of this tool, see [here](http://www.eecs.qmul.ac.uk/~ddino/papers/nasa-infer.pdf). 
+**Infer#** is able to detect resource leaks. Supported scenarios include those enumerated below. For further detail on the analysis capabilities of this tool, see [here](http://www.eecs.qmul.ac.uk/~ddino/papers/nasa-infer.pdf). 
 
 ## Supported scenarios
 
-In each of the following cases, we describe a resource leak which would be identified by CSharpCodeAnalyzer.
+In each of the following cases, we describe a resource leak which would be identified by Infer#.
 
 ### 1. Deallocation of IDisposable Local Variables: 
 

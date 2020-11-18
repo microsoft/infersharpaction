@@ -1,4 +1,4 @@
-name: 'C# Code Analyzer'
+name: 'Infer#'
 description: 'Scalable and interprocedural code analyzer for detecting memory safety issues such as null pointer derefs and resource leaks'
 branding:
   icon: 'search'
