@@ -15,11 +15,11 @@ jobs:
     - name: Build with dotnet
       run: dotnet build Examples/Examples.sln
     
-    - name: Run C# Code Analyzer
-      id: runcsharpcodeanalyzer
+    - name: Run Infer#
+      id: runinfersharp
       uses: ./
       with:
         binary-path: 'Examples'
 
-    - name: C# Code Analyzer analysis results
-      run: echo "${{ steps.runcsharpcodeanalyzer.outputs.results }}"
+    - name: Infer# analysis results
+      run: echo "${{ steps.runinfersharp.outputs.results }}"

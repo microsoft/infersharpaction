@@ -1,18 +1,18 @@
-# C# Code Analyzer
+# Infer# GitHub Action
 
-**C# Code Analyzer** is an interprocedural and scalable static code analyzer for C#. Via the capabilities of Facebook's [Infer](https://fbinfer.com/), this tool detects null pointer dereferences and [resource leak](Examples/ResourceLeak/README.md). Its source code can be found [here](https://github.com/microsoft/infersharp).
+**Infer#** is an interprocedural and scalable static code analyzer for C#. Via the capabilities of Facebook's [Infer](https://fbinfer.com/), this tool detects null pointer dereferences and [resource leak](Examples/ResourceLeak/README.md). Its source code can be found [here](https://github.com/microsoft/infersharp).
 
-![Sample Report](https://github.com/microsoft/CSharpCodeAnalyzer/blob/main/assets/samplereport.png)
+![Sample Report](https://github.com/microsoft/infersharpaction/blob/main/assets/samplereport.png)
 
 ## Basic Usage
 ```yml
-- name: Run C# Code Analyzer      
-  uses: microsoft/CSharpCodeAnalyzer@v0.1
-  id: runcsharpcodeanalyzer
+- name: Run Infer#      
+  uses: microsoft/infersharpaction@v0.2
+  id: runinfersharp
   with:
     binary-path: '<path to the binary directory containing .dlls and .pdbs>'
-- name: C# Code Analyzer analysis results
-  run: echo "${{ steps.runcsharpcodeanalyzer.outputs.results }}"
+- name: Infer# analysis results
+  run: echo "${{ steps.runinfersharp.outputs.results }}"
 ```
 
 ### Parameters
@@ -23,19 +23,19 @@
 By default, the analyzer will report issues on all input binaries set to `binary-path`. If you prefer to see the warnings on a specific set of files (for example, changed files in a PR), provide a list of file paths delimited either by spaces or commas; for example, _src/project1/class1.cs,src/project2/class2.cs_.
 
 ## Report On Changed Files Only From Pull Requests
-The tool can be tuned to analyze only the changed files in a pull request (PR). To do this, select any Github Action which retrieves the changed files in a pull request (for example, [Get All Changed Files Action](https://github.com/marketplace/actions/get-all-changed-files)) and configure it to `report-on-files` as follows:
+The tool can be tuned to report on only the changed files in a pull request (PR). To do this, select any Github Action which retrieves the changed files in a pull request (for example, [Get All Changed Files Action](https://github.com/marketplace/actions/get-all-changed-files)) and configure it to `report-on-files` as follows:
 ```yml
 - name: Get All Changed Files
   id: files
   uses: jitterbit/get-changed-files@v1
-- name: Run C# Code Analyzer      
-  uses: microsoft/CSharpCodeAnalyzer@v0.1
-  id: runcsharpcodeanalyzer
+- name: Run Infer#      
+  uses: microsoft/infersharpaction@v0.2
+  id: runinfersharp
   with:
     binary-path: '<path to the binary directory where it contains .dlls and .pdbs>'
     report-on-files: ${{ steps.files.outputs.all }}
-- name: C# Code Analyzer analysis results
-  run: echo "${{ steps.runcsharpcodeanalyzer.outputs.results }}"
+- name: Infer# analysis results
+  run: echo "${{ steps.runinfersharp.outputs.results }}"
 ```
 
 ## Limitations
