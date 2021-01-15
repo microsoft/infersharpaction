@@ -1,5 +1,5 @@
 name: 'InferSharp'
-description: 'Scalable and interprocedural code analyzer for detecting memory safety issues such as null pointer derefs and resource leaks'
+description: 'Scalable and interprocedural code analyzer for detecting memory safety issues such as null pointer derefs and resource leaks.\n To report issues on all files in a repo, refer to https://github.com/marketplace/actions/infersharp#basic-usage.\n To report issues on changed files only, refer to https://github.com/marketplace/actions/infersharp#report-on-changed-files-only-from-pull-requests.'
 branding:
   icon: 'search'
 inputs:
