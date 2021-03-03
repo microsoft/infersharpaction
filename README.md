@@ -1,3 +1,5 @@
+[![Run examples as a GitHub Action](https://github.com/microsoft/infersharpaction/actions/workflows/runexamples.yml/badge.svg)](https://github.com/microsoft/infersharpaction/actions/workflows/runexamples.yml)
+
 # Infer# GitHub Action
 
 **Infer#** is an interprocedural and scalable static code analyzer for C#. Via the capabilities of Facebook's [Infer](https://fbinfer.com/), this tool detects null pointer dereferences and [resource leak](Examples/ResourceLeak/README.md). Its source code can be found [here](https://github.com/microsoft/infersharp).
