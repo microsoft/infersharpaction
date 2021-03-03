@@ -6,10 +6,6 @@ inputs:
   binary-path:
     description: 'The path where the binaries (.dll and .pdb) are located.'
     required: true
-  report-on-files:
-    description: 'Only report on the files specified.'
-    required: false
-    default: ''
 outputs:
   results:
     description: 'The analysis results'
@@ -18,4 +14,3 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.binary-path }}
-    - ${{ inputs.report-on-files }}
