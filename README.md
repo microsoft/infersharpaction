@@ -4,10 +4,10 @@
 
 ![Sample Report](https://github.com/microsoft/infersharpaction/blob/main/assets/samplereport.png)
 
-## Basic Usage
+## Usage
 ```yml
 - name: Run Infer#      
-  uses: microsoft/infersharpaction@v0.2
+  uses: microsoft/infersharpaction@v1.0
   id: runinfersharp
   with:
     binary-path: '<path to the binary directory containing .dlls and .pdbs>'
@@ -18,25 +18,6 @@
 ### Parameters
 #### `binary-path`
 **Required** Path to the binary directory containing .dlls **and** .pdbs.
-
-#### `report-on-files`
-By default, the analyzer will report issues on all input binaries set to `binary-path`. If you prefer to see the warnings on a specific set of files (for example, changed files in a PR), provide a list of file paths delimited either by spaces or commas; for example, _src/project1/class1.cs,src/project2/class2.cs_.
-
-## Report On Changed Files Only From Pull Requests
-The tool can be tuned to report on only the changed files in a pull request (PR). To do this, select any Github Action which retrieves the changed files in a pull request (for example, [Get All Changed Files Action](https://github.com/marketplace/actions/get-all-changed-files)) and configure it to `report-on-files` as follows:
-```yml
-- name: Get All Changed Files
-  id: files
-  uses: jitterbit/get-changed-files@v1
-- name: Run Infer#      
-  uses: microsoft/infersharpaction@v0.2
-  id: runinfersharp
-  with:
-    binary-path: '<path to the binary directory where it contains .dlls and .pdbs>'
-    report-on-files: ${{ steps.files.outputs.all }}
-- name: Infer# analysis results
-  run: echo "${{ steps.runinfersharp.outputs.results }}"
-```
 
 ## Limitations
 - GitHub does not currently support Linux containers hosted on Windows; your CI pipeline must run on Linux. If it doesn't, you may still apply the analyzer by creating a dependent workflow which transports the binaries to a Linux host on which to run the analysis.
