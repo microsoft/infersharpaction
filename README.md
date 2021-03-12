@@ -28,6 +28,9 @@
 
 - The analyzer may report warnings outside of your own code. This is because it runs on all input .pdbs, including those belonging to third-party library references. To prevent this, isolate the desired binaries in the input `binary-path` directory.
 
+## Troubleshooting
+- Please see [here](https://github.com/microsoft/infersharp/blob/main/TROUBLESHOOTING.md) for troubleshooting tips.
+
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
