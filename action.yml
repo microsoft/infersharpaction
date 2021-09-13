@@ -1,5 +1,5 @@
 name: 'InferSharp'
-description: 'Scalable and interprocedural code analyzer for detecting memory safety issues such as null pointer derefs and resource leaks'
+description: 'Scalable and interprocedural C# code analyzer for detecting race condition, null pointer derefs and resource leaks'
 branding:
   icon: 'search'
 inputs:

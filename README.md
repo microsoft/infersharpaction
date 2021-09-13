@@ -2,14 +2,14 @@
 
 # Infer# GitHub Action
 
-**Infer#** is an interprocedural and scalable static code analyzer for C#. Via the capabilities of Facebook's [Infer](https://fbinfer.com/), this tool detects null pointer dereferences and [resource leak](Examples/ResourceLeak/README.md). Its source code can be found [here](https://github.com/microsoft/infersharp).
+**Infer#** is an interprocedural and scalable static code analyzer for C#. Via the capabilities of Facebook's [Infer](https://fbinfer.com/), this tool detects race condition, null pointer dereferences and resource leaks. Its source code can be found [here](https://github.com/microsoft/infersharp).
 
 ![Sample Report](https://github.com/microsoft/infersharpaction/blob/main/assets/samplereport.png)
 
 ## Usage
 ```yml
 - name: Run Infer#      
-  uses: microsoft/infersharpaction@v1.0
+  uses: microsoft/infersharpaction@v1.1
   id: runinfersharp
   with:
     binary-path: '<path to the binary directory containing .dlls and .pdbs>'
