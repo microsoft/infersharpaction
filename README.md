@@ -9,7 +9,7 @@
 ## Usage
 ```yml
 - name: Run Infer#      
-  uses: microsoft/infersharpaction@v1.1
+  uses: microsoft/infersharpaction@v1.2
   with:
     binary-path: '<path to the binary directory containing .dlls and .pdbs>'
 ```
