@@ -10,11 +10,8 @@
 ```yml
 - name: Run Infer#      
   uses: microsoft/infersharpaction@v1.1
-  id: runinfersharp
   with:
     binary-path: '<path to the binary directory containing .dlls and .pdbs>'
-- name: Infer# analysis results
-  run: echo "${{ steps.runinfersharp.outputs.results }}"
 ```
 
 ### Parameters
