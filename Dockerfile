@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/infersharp:v1.1
+FROM mcr.microsoft.com/infersharp:v1.2
 
 COPY entrypoint.sh /entrypoint.sh
 
