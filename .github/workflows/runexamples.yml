@@ -22,4 +22,4 @@ jobs:
         binary-path: 'Examples'
     
     - name: Infer# analysis results
-      run: echo "${{ steps.runinfersharp.outputs.result_txt }}"
+      run: echo "${{ steps.runinfersharp.outputs.result-txt }}"

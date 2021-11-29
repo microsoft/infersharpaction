@@ -5,5 +5,5 @@ chmod +x run_infersharp.sh
 ./run_infersharp.sh "$1"
 cat infer-out/report.txt
 
-var="$(cat infer-out/report.txt)"
-echo "::set-output name=result_txt::$var"
+var=$(cat infer-out/report.txt)
+echo "::set-output name=result-txt::$var"
