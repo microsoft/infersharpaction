@@ -22,4 +22,11 @@ jobs:
         binary-path: 'Examples'
 
     - name: Infer# analysis results
-      run: echo "${{ steps.runinfersharp.outputs.results }}"
+      run: echo "${{ steps.runinfersharp.outputs.results }}" >> report.txt
+
+    - name: Upload report
+    - uses: actions/upload-artifact@v2
+        with:
+          name: report
+          path: report.txt
+      
