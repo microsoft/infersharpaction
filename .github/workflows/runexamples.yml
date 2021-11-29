@@ -20,6 +20,6 @@ jobs:
       uses: ./
       with:
         binary-path: 'Examples'
-    
+
     - name: Infer# analysis results
-      run: echo "${{ steps.runinfersharp.outputs.result-txt }}"
+      run: echo "${{ steps.runinfersharp.outputs.results }}"
