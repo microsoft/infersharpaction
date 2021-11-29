@@ -4,6 +4,7 @@ curl -o run_infersharp.sh https://raw.githubusercontent.com/microsoft/infersharp
 chmod +x run_infersharp.sh
 ./run_infersharp.sh $1
 
+cat infer-out/report.txt
 var="$( cat infer-out/report.txt )"
 var="${var//'#'/'%23'}"
 var="${var//'%'/'%25'}"
