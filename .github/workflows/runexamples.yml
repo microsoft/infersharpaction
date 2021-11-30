@@ -24,8 +24,17 @@ jobs:
     - name: Infer# analysis results
       run: echo "${{ steps.runinfersharp.outputs.results }}" >> report.txt
 
+    - name: Infer# analysis results in SARIF
+      run: echo "${{ steps.runinfersharp.outputs.results-sarif }}" >> report.sarif
+
     - name: Upload Infer# report
       uses: actions/upload-artifact@v2
       with:
         name: report
         path: report.txt
+    
+    - name: Upload Infer# report in SARIF
+      uses: actions/upload-artifact@v2
+      with:
+        name: report-sarif
+        path: report.sarif
