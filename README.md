@@ -10,8 +10,18 @@
 ```yml
 - name: Run Infer#      
   uses: microsoft/infersharpaction@v1.2
+  id: runinfersharp
   with:
     binary-path: '<path to the binary directory containing .dlls and .pdbs>'
+
+- name: Infer# analysis results
+  run: echo "${{ steps.runinfersharp.outputs.results }}" >> report.txt
+
+- name: Upload Infer# report
+  uses: actions/upload-artifact@v2
+  with:
+    name: report
+    path: report.txt
 ```
 
 ### Parameters
