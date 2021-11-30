@@ -9,8 +9,6 @@ inputs:
 outputs:
   results:
     description: 'The analysis results'
-  results-sarif:
-    description: 'The analysis results in SARIF format'
 runs:
   using: 'docker'
   image: 'Dockerfile'
