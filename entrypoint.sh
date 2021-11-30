@@ -4,6 +4,9 @@ curl -o run_infersharp.sh https://raw.githubusercontent.com/microsoft/infersharp
 chmod +x run_infersharp.sh
 ./run_infersharp.sh "$1"
 
-printf '\n\nAnalysis Result\n'
-printf '%50s\n' | tr ' ' =
-cat infer-out/report.txt
+var="$( cat infer-out/report.txt )"
+var="${var//'"'/''}"
+var="${var//'%'/'%25'}"
+var="${var//$'\n'/'%0A'}"
+var="${var//$'\r'/'%0D'}"
+echo "::set-output name=results::$var"

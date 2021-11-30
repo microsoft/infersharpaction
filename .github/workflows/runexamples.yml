@@ -16,6 +16,16 @@ jobs:
       run: dotnet build Examples/Examples.sln
     
     - name: Run Infer#
+      id: runinfersharp
       uses: ./
       with:
         binary-path: 'Examples'
+
+    - name: Infer# analysis results
+      run: echo "${{ steps.runinfersharp.outputs.results }}" >> report.txt
+
+    - name: Upload Infer# report
+      uses: actions/upload-artifact@v2
+      with:
+        name: report
+        path: report.txt
