@@ -1,5 +1,3 @@
-[![Run examples as a GitHub Action](https://github.com/microsoft/infersharpaction/actions/workflows/runexamples.yml/badge.svg)](https://github.com/microsoft/infersharpaction/actions/workflows/runexamples.yml)
-
 # Infer# GitHub Action
 
 **Infer#** is an interprocedural and scalable static code analyzer for C#. Via the capabilities of Facebook's [Infer](https://fbinfer.com/), this tool detects race condition, null pointer dereferences and resource leaks. Its source code can be found [here](https://github.com/microsoft/infersharp).
@@ -16,7 +14,7 @@
   with:
     binary-path: '<path to the binary directory containing .dlls and .pdbs>'
 
-- name: Upload SARIF file
+- name: Upload SARIF output to GitHub Security Center
   uses: github/codeql-action/upload-sarif@v1
   with:
     sarif_file: infer-out/report.sarif
@@ -44,7 +42,7 @@ For all supported features, please see GitHub Docs on [managing alerts](https://
   with:
     binary-path: '<path to the binary directory containing .dlls and .pdbs>'
 
-- name: Upload Infer# report
+- name: Upload Infer# report as an artifact
   uses: actions/upload-artifact@v2
   with:
     name: report
