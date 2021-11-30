@@ -6,7 +6,7 @@
 
 ## Usage
 
-### Option 1 (Recommended)- Uploading SARIF output to GitHub
+### Option 1 - Uploading [SARIF](https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning) output to GitHub
 ```yml
 - name: Run Infer#      
   uses: microsoft/infersharpaction@v1.2
