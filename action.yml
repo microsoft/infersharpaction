@@ -6,6 +6,7 @@ inputs:
   binary-path:
     description: 'The path where the binaries (.dll and .pdb) are located.'
     required: true
+    default: '.'
 outputs:
   results:
     description: 'The analysis results'

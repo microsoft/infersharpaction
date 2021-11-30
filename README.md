@@ -1,5 +1,3 @@
-[![Run examples as a GitHub Action](https://github.com/microsoft/infersharpaction/actions/workflows/runexamples.yml/badge.svg)](https://github.com/microsoft/infersharpaction/actions/workflows/runexamples.yml)
-
 # Infer# GitHub Action
 
 **Infer#** is an interprocedural and scalable static code analyzer for C#. Via the capabilities of Facebook's [Infer](https://fbinfer.com/), this tool detects race condition, null pointer dereferences and resource leaks. Its source code can be found [here](https://github.com/microsoft/infersharp).
@@ -7,6 +5,24 @@
 ![Sample Report](https://github.com/microsoft/infersharpaction/blob/main/assets/samplereport.png)
 
 ## Usage
+
+### Option 1 - Uploading [SARIF](https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning) output to GitHub
+```yml
+- name: Run Infer#      
+  uses: microsoft/infersharpaction@v1.2
+  id: runinfersharp
+  with:
+    binary-path: '<path to the binary directory containing .dlls and .pdbs>'
+
+- name: Upload SARIF output to GitHub Security Center
+  uses: github/codeql-action/upload-sarif@v1
+  with:
+    sarif_file: infer-out/report.sarif
+```
+You can view and manage the results at the Security tab -> Code scanning alerts. For example, if an alert is a false positive, you can dismiss it. Next time code scanning runs, the same code won't generate an alert.
+For all supported features, please see GitHub Docs on [managing alerts](https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/managing-code-scanning-alerts-for-your-repository).
+
+### Option 2 - Displaying results directly in workflow logs
 ```yml
 - name: Run Infer#      
   uses: microsoft/infersharpaction@v1.2
@@ -15,17 +31,26 @@
     binary-path: '<path to the binary directory containing .dlls and .pdbs>'
 
 - name: Infer# analysis results
-  run: echo "${{ steps.runinfersharp.outputs.results }}" >> report.txt
+  run: echo "${{ steps.runinfersharp.outputs.results }}"
+```
 
-- name: Upload Infer# report
+### Option 3 - Uploading results as an artifact
+```yml
+- name: Run Infer#      
+  uses: microsoft/infersharpaction@v1.2
+  id: runinfersharp
+  with:
+    binary-path: '<path to the binary directory containing .dlls and .pdbs>'
+
+- name: Upload Infer# report as an artifact
   uses: actions/upload-artifact@v2
   with:
     name: report
-    path: report.txt
+    path: infer-out/report.txt
 ```
 
-### Parameters
-#### `binary-path`
+#### Parameters
+##### `binary-path`
 **Required** Path to the binary directory containing .dlls **and** .pdbs.
 
 ## Limitations

@@ -1,12 +1,12 @@
 #!/bin/bash
 
-curl -o run_infersharp.sh https://raw.githubusercontent.com/microsoft/infersharp/v1.2/run_infersharp_ci.sh
+curl -o run_infersharp.sh https://raw.githubusercontent.com/microsoft/infersharpaction/v1.2.1/run_infersharp_ci.sh
 chmod +x run_infersharp.sh
 ./run_infersharp.sh "$1"
 
-var="$( cat infer-out/report.txt )"
-var="${var//'"'/''}"
-var="${var//'%'/'%25'}"
-var="${var//$'\n'/'%0A'}"
-var="${var//$'\r'/'%0D'}"
-echo "::set-output name=results::$var"
+results="$( cat infer-out/report.txt )"
+results="${results//'"'/''}"
+results="${results//'%'/'%25'}"
+results="${results//$'\n'/'%0A'}"
+results="${results//$'\r'/'%0D'}"
+echo "::set-output name=results::$results"

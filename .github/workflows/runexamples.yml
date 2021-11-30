@@ -1,6 +1,6 @@
 name: Run examples as a GitHub Action
 
-on: [pull_request, workflow_dispatch]
+on: [workflow_dispatch]
 
 jobs:
   build:
@@ -22,10 +22,15 @@ jobs:
         binary-path: 'Examples'
 
     - name: Infer# analysis results
-      run: echo "${{ steps.runinfersharp.outputs.results }}" >> report.txt
+      run: echo "${{ steps.runinfersharp.outputs.results }}"
 
-    - name: Upload Infer# report
+    - name: Upload Infer# report as an artifact
       uses: actions/upload-artifact@v2
       with:
         name: report
-        path: report.txt
+        path: infer-out/report.txt
+    
+    - name: Upload SARIF output to GitHub Security Center
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+        sarif_file: infer-out/report.sarif
