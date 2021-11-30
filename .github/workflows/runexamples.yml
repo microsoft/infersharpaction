@@ -16,7 +16,6 @@ jobs:
       run: dotnet build Examples/Examples.sln
     
     - name: Run Infer#
-      id: runinfersharp
       uses: ./
       with:
         binary-path: 'Examples'

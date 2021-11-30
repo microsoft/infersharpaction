@@ -7,6 +7,23 @@
 ![Sample Report](https://github.com/microsoft/infersharpaction/blob/main/assets/samplereport.png)
 
 ## Usage
+
+### Option 1 (Recommended)- Uploading SARIF output to GitHub
+```yml
+- name: Run Infer#      
+  uses: microsoft/infersharpaction@v1.2
+  id: runinfersharp
+  with:
+    binary-path: '<path to the binary directory containing .dlls and .pdbs>'
+
+- name: Upload SARIF file
+  uses: github/codeql-action/upload-sarif@v1
+  with:
+    sarif_file: infer-out/report.sarif
+```
+You can view and manage the results at the Security tab -> Code scanning alerts. For example, if an alert is a false positive, you can dismiss it. Next time code scanning runs, the same code won't generate an alert.
+
+### Option 2 - Displaying results directly in workflow logs
 ```yml
 - name: Run Infer#      
   uses: microsoft/infersharpaction@v1.2
@@ -15,17 +32,26 @@
     binary-path: '<path to the binary directory containing .dlls and .pdbs>'
 
 - name: Infer# analysis results
-  run: echo "${{ steps.runinfersharp.outputs.results }}" >> report.txt
+  run: echo "${{ steps.runinfersharp.outputs.results }}"
+```
+
+### Option 3 - Uploading results as an artifact
+```yml
+- name: Run Infer#      
+  uses: microsoft/infersharpaction@v1.2
+  id: runinfersharp
+  with:
+    binary-path: '<path to the binary directory containing .dlls and .pdbs>'
 
 - name: Upload Infer# report
   uses: actions/upload-artifact@v2
   with:
     name: report
-    path: report.txt
+    path: infer-out/report.txt
 ```
 
-### Parameters
-#### `binary-path`
+#### Parameters
+##### `binary-path`
 **Required** Path to the binary directory containing .dlls **and** .pdbs.
 
 ## Limitations

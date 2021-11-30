@@ -7,6 +7,7 @@ namespace NullDereference
     {
         static void Main(string[] args)
         {
+            
             string testString = null;
             _ = testString.Length;
         }
