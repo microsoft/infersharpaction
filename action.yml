@@ -14,4 +14,3 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.binary-path }}
-    
