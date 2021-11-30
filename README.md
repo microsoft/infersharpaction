@@ -22,6 +22,7 @@
     sarif_file: infer-out/report.sarif
 ```
 You can view and manage the results at the Security tab -> Code scanning alerts. For example, if an alert is a false positive, you can dismiss it. Next time code scanning runs, the same code won't generate an alert.
+For all supported features, please see GitHub Docs on [managing alerts](https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/managing-code-scanning-alerts-for-your-repository).
 
 ### Option 2 - Displaying results directly in workflow logs
 ```yml
