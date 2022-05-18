@@ -80,7 +80,7 @@ fi
 
 if [ "$fail_on_issue" == true ]; then
 	if [ -s infer-out/report.txt ]; then
-		echo "--fail-on-issue flag ON, exit code set to 1.\n"
+		echo -e "\n--fail-on-issue flag ON, exit code set to 1.\n"
 		exit 1
 	fi
 fi
