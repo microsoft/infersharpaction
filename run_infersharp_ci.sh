@@ -18,12 +18,14 @@ fail_on_issue=false
 # Clear issue types if specific issue is mentioned in arguments
 for v in $2
 do
+echo $v
     if [[ $v == --enable* ]]; then
         infer_args_list=()
     fi
 done
 
 # Parse arguments
+echo "$#"
 if [ "$#" -gt 1 ]; then
     i=2
     while [ $i -le $# ]
