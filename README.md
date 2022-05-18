@@ -49,9 +49,19 @@ For all supported features, please see GitHub Docs on [managing alerts](https://
     path: infer-out/report.txt
 ```
 
-#### Parameters
-##### `binary-path`
+## Parameters
+### `binary-path`
 **Required** Path to the binary directory containing .dlls **and** .pdbs.
+
+### `optional-flags`
+| Flag                             | Description                                  |
+|----------------------------------|----------------------------------------------|
+| --enable-null-dereference        | Report null dereferences                     |
+| --enable-dotnet-resource-leak    | Report resource leaks                        |
+| --enable-thread-safety-violation | Report threat-safety violations              |
+| --fail-on-issue                  | Set exit code to 1 if Infer# reported issues |
+
+Concatenate multiple flags with space.
 
 ## Limitations
 - GitHub does not currently support Linux containers hosted on Windows; your CI pipeline must run on Linux. If it doesn't, you may still apply the analyzer by creating a dependent workflow which transports the binaries to a Linux host on which to run the analysis.

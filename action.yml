@@ -7,6 +7,9 @@ inputs:
     description: 'The path where the binaries (.dll and .pdb) are located.'
     required: true
     default: '.'
+  optional-flags:
+    description: 'Optional flags, see README.md for the complete list.'
+    required: false
 outputs:
   results:
     description: 'The analysis results'
@@ -15,3 +18,4 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.binary-path }}
+    - ${{ inputs.optional-flags }}
