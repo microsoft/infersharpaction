@@ -16,7 +16,7 @@ output_folder=""
 fail_on_issue=false
 
 # Clear issue types if specific issue is mentioned in arguments
-for v in "$@"
+for v in $2
 do
     if [[ $v == --enable* ]]; then
         infer_args_list=()
