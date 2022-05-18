@@ -7,7 +7,7 @@ set -e
 
 # Check if we have enough arguments.
 if [ "$#" -lt 1 ]; then
-    echo "run_infersharp.sh <dll_folder_path> [--output-folder <sarif_output_folder_path> --enable-null-dereference --enable-dotnet-resource-leak --enable-thread-safety-violation --sarif] -- requires 1 argument (dll_folder_path)"
+    echo "run_infersharp.sh <dll_folder_path> [--output-folder <sarif_output_folder_path> --enable-null-dereference --enable-dotnet-resource-leak --enable-thread-safety-violation] -- requires 1 argument (dll_folder_path)"
     exit
 fi
 
@@ -16,7 +16,7 @@ output_folder=""
 fail_on_issue=false
 
 # Clear issue types if specific issue is mentioned in arguments
-for v in $@
+for v in "$@"
 do
     if [[ $v == --enable* ]]; then
         infer_args_list=()

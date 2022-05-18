@@ -59,9 +59,9 @@ For all supported features, please see GitHub Docs on [managing alerts](https://
 | --enable-null-dereference        | Report null dereferences                     |
 | --enable-dotnet-resource-leak    | Report resource leaks                        |
 | --enable-thread-safety-violation | Report threat-safety violations              |
-| --fail-on-issue                  | Set exit code to 1 if Infer# reported issues |
+| --fail-on-issue                  | Set exit code to 1 if Infer# reports issues  |
 
-Concatenate multiple flags with space.
+You can concatenate multiple flags with space.
 
 ## Limitations
 - GitHub does not currently support Linux containers hosted on Windows; your CI pipeline must run on Linux. If it doesn't, you may still apply the analyzer by creating a dependent workflow which transports the binaries to a Linux host on which to run the analysis.
