@@ -2,7 +2,7 @@
 
 curl -o run_infersharp.sh https://raw.githubusercontent.com/microsoft/infersharpaction/v1.3/run_infersharp_ci.sh
 chmod +x run_infersharp.sh
-./run_infersharp.sh "$1 $2"
+./run_infersharp.sh "$1" "$2"
 
 results="$( cat infer-out/report.txt )"
 results="${results//'"'/''}"
