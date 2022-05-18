@@ -6,11 +6,6 @@ curl -o run_infersharp.sh https://raw.githubusercontent.com/microsoft/infersharp
 chmod +x run_infersharp.sh
 ./run_infersharp.sh "$1" "$2"
 
-echo "$?"
-if [ $? != 0 ]; then
-    exit 1
-fi
-
 results="$( cat infer-out/report.txt )"
 results="${results//'"'/''}"
 results="${results//'%'/'%25'}"
