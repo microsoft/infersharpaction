@@ -20,7 +20,7 @@ jobs:
       uses: ./
       with:
         binary-path: 'Examples'
-        optional-flags: '--fail-on-issue'
+        optional-flags: '--fail-on-issue --enable-null-dereference'
 
     - name: Infer# analysis results
       run: echo "${{ steps.runinfersharp.outputs.results }}"
