@@ -16,6 +16,8 @@ output_folder=""
 fail_on_issue=false
 
 # Clear issue types if specific issue is mentioned in arguments
+
+echo "$2"
 for v in "$2"
 do
     if [[ $v == --enable* ]]; then
