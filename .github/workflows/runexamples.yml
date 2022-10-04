@@ -20,6 +20,7 @@ jobs:
       uses: ./
       with:
         binary-path: 'Examples'
+        optional-flags: '--disable-issue-type PULSE_RESOURCE_LEAK --fail-on-issue'
 
     - name: Infer# analysis results
       run: echo "${{ steps.runinfersharp.outputs.results }}"
@@ -31,6 +32,6 @@ jobs:
         path: infer-out/report.txt
     
     - name: Upload SARIF output to GitHub Security Center
-      uses: github/codeql-action/upload-sarif@v1
+      uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: infer-out/report.sarif
