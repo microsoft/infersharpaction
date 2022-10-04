@@ -38,7 +38,7 @@ cp -r "$1" infer-staging
 
 # Run InferSharp analysis.
 echo -e "Code translation started..."
-/./Cilsil/Cilsil translate infer-staging --outcfg infer-staging/cfg.json --outtenv infer-staging/tenv.json --cfgtxt infer-staging/cfg.txt --extprogress
+/./infersharp/Cilsil/Cilsil translate infer-staging --outcfg infer-staging/cfg.json --outtenv infer-staging/tenv.json --cfgtxt infer-staging/cfg.txt --extprogress
 echo -e "Code translation completed. Analyzing...\n"
 infer run $infer_args --cfg-json infer-staging/cfg.json --tenv-json infer-staging/tenv.json
 
