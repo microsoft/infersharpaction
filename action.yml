@@ -8,7 +8,7 @@ inputs:
     required: true
     default: '.'
   optional-flags:
-    description: 'Optional flags, see README.md for the complete list.'
+    description: 'Optional flags, see https://fbinfer.com/docs/man-infer-run/#OPTIONS for the complete list.'
     required: false
 outputs:
   results:
