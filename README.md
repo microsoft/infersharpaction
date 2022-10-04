@@ -1,6 +1,6 @@
 # Infer# GitHub Action
 
-**Infer#** is an interprocedural and scalable static code analyzer for C#. Via the capabilities of Facebook's [Infer](https://fbinfer.com/), this tool detects race condition, null pointer dereferences and resource leaks. Its source code can be found [here](https://github.com/microsoft/infersharp).
+**Infer#** is an interprocedural and scalable static code analyzer for C#. Via the capabilities of Facebook's [Infer](https://fbinfer.com/), this tool detects race condition, null pointer dereferences and resource leaks. It also performs taint flow tracking to detect critical security vulnerabilities like SQL injections. Its source code can be found [here](https://github.com/microsoft/infersharp).
 
 ![Sample Report](https://github.com/microsoft/infersharpaction/blob/main/assets/samplereport.png)
 
@@ -9,13 +9,13 @@
 ### Option 1 - Uploading [SARIF](https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning) output to GitHub
 ```yml
 - name: Run Infer#      
-  uses: microsoft/infersharpaction@v1.3.1
+  uses: microsoft/infersharpaction@v1.4
   id: runinfersharp
   with:
     binary-path: '<path to the binary directory containing .dlls and .pdbs>'
 
 - name: Upload SARIF output to GitHub Security Center
-  uses: github/codeql-action/upload-sarif@v1
+  uses: github/codeql-action/upload-sarif@v2
   with:
     sarif_file: infer-out/report.sarif
 ```
@@ -25,7 +25,7 @@ For all supported features, please see GitHub Docs on [managing alerts](https://
 ### Option 2 - Displaying results directly in workflow logs
 ```yml
 - name: Run Infer#      
-  uses: microsoft/infersharpaction@v1.3.1
+  uses: microsoft/infersharpaction@v1.4
   id: runinfersharp
   with:
     binary-path: '<path to the binary directory containing .dlls and .pdbs>'
@@ -37,7 +37,7 @@ For all supported features, please see GitHub Docs on [managing alerts](https://
 ### Option 3 - Uploading results as an artifact
 ```yml
 - name: Run Infer#      
-  uses: microsoft/infersharpaction@v1.3.1
+  uses: microsoft/infersharpaction@v1.4
   id: runinfersharp
   with:
     binary-path: '<path to the binary directory containing .dlls and .pdbs>'
@@ -54,12 +54,7 @@ For all supported features, please see GitHub Docs on [managing alerts](https://
 **Required** Path to the binary directory containing .dlls **and** .pdbs.
 
 ### `optional-flags`
-| Flag                             | Description                                  |
-|----------------------------------|----------------------------------------------|
-| --enable-null-dereference        | Report null dereferences                     |
-| --enable-dotnet-resource-leak    | Report resource leaks                        |
-| --enable-thread-safety-violation | Report threat-safety violations              |
-| --fail-on-issue                  | Set exit code to 1 if Infer# reports issues  |
+See https://fbinfer.com/docs/man-infer-run/#OPTIONS for the complete list.
 
 You can concatenate multiple flags with space.
 
