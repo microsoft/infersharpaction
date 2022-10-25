@@ -28,7 +28,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: report
-        path: infer-out/report.txt
+        path: infer-out/report.sarif
     
     - name: Upload SARIF output to GitHub Security Center
       uses: github/codeql-action/upload-sarif@v2
