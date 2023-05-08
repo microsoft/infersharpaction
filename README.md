@@ -9,7 +9,7 @@
 ### Option 1 - Uploading [SARIF](https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning) output to GitHub
 ```yml
 - name: Run Infer#      
-  uses: microsoft/infersharpaction@v1.4
+  uses: microsoft/infersharpaction@v1.4.1
   id: runinfersharp
   with:
     binary-path: '<path to the binary directory containing .dlls and .pdbs>'
@@ -25,19 +25,19 @@ For all supported features, please see GitHub Docs on [managing alerts](https://
 ### Option 2 - Displaying results directly in workflow logs
 ```yml
 - name: Run Infer#      
-  uses: microsoft/infersharpaction@v1.4
+  uses: microsoft/infersharpaction@v1.4.1
   id: runinfersharp
   with:
     binary-path: '<path to the binary directory containing .dlls and .pdbs>'
 
 - name: Infer# analysis results
-  run: echo "${{ steps.runinfersharp.outputs.results }}"
+  run: cat infer-out/report.txt
 ```
 
 ### Option 3 - Uploading results as an artifact
 ```yml
 - name: Run Infer#      
-  uses: microsoft/infersharpaction@v1.4
+  uses: microsoft/infersharpaction@v1.4.1
   id: runinfersharp
   with:
     binary-path: '<path to the binary directory containing .dlls and .pdbs>'
