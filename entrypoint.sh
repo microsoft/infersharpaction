@@ -13,4 +13,4 @@ results="${results//'"'/''}"
 results="${results//'%'/'%25'}"
 results="${results//$'\n'/'%0A'}"
 results="${results//$'\r'/'%0D'}"
-echo "::set-output name=results::$results"
+echo "results=$result" >> $env:GITHUB_OUTPUT
