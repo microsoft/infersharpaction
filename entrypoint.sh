@@ -7,10 +7,3 @@ curl -o .inferconfig https://raw.githubusercontent.com/microsoft/infersharp/v1.4
 chmod +x run_infersharp.sh
 chmod +x .inferconfig
 ./run_infersharp.sh "$1" $2
-
-results="$( cat infer-out/report.txt )"
-results="${results//'"'/''}"
-results="${results//'%'/'%25'}"
-results="${results//$'\n'/'%0A'}"
-results="${results//$'\r'/'%0D'}"
-echo "results=$result" >> $env:GITHUB_OUTPUT
