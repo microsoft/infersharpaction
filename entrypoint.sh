@@ -8,7 +8,7 @@ SCRIPTPATH=$(dirname "$SCRIPT")
 FULLPATH=$(readlink -f "$1") 
 
 # Downlaod infersharp config
-curl -o $SCRIPTPATH/.inferconfig https://raw.githubusercontent.com/microsoft/infersharp/v1.4/.inferconfig
+curl -o $SCRIPTPATH/.inferconfig https://raw.githubusercontent.com/microsoft/infersharp/v1.5/.inferconfig
 
 # Add execution auth
 chmod +x $SCRIPTPATH/run_infersharp_ci.sh
