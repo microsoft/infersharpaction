@@ -11,7 +11,7 @@ inputs:
     description: 'Optional flags, see https://fbinfer.com/docs/man-infer-run/#OPTIONS for the complete list.'
     required: false
   github-sarif:
-    description: 'If set true automaticaly address issue https://github.com/microsoft/infersharpaction/issues/51 and trasform absolute path in relative.'
+    description: 'If set true automaticaly address issue https://github.com/microsoft/infersharpaction/issues/51.'
     required: false
     default: 'false'
 outputs:
