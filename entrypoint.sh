@@ -2,7 +2,7 @@
 
 set -e
 
-# transform binary-path from relative tu absolute
+# transform binary-path from relative to absolute
 SCRIPT=$(realpath -s "$0")
 SCRIPTPATH=$(dirname "$SCRIPT")
 FULLPATH=$(readlink -f "$1") 

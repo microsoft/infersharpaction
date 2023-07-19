@@ -7,9 +7,10 @@
 ## Usage
 
 ### Option 1 - Uploading [SARIF](https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning) output to GitHub
+
 ```yml
 - name: Run Infer#      
-  uses: microsoft/infersharpaction@v1.4.1
+  uses: microsoft/infersharpaction@v1.5
   id: runinfersharp
   with:
     binary-path: '<path to the binary directory containing .dlls and .pdbs>'
@@ -19,13 +20,15 @@
   with:
     sarif_file: infer-out/report.sarif
 ```
+
 You can view and manage the results at the Security tab -> Code scanning alerts. For example, if an alert is a false positive, you can dismiss it. Next time code scanning runs, the same code won't generate an alert.
 For all supported features, please see GitHub Docs on [managing alerts](https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/managing-code-scanning-alerts-for-your-repository).
 
 ### Option 2 - Displaying results directly in workflow logs
+
 ```yml
 - name: Run Infer#      
-  uses: microsoft/infersharpaction@v1.4.1
+  uses: microsoft/infersharpaction@v1.5
   id: runinfersharp
   with:
     binary-path: '<path to the binary directory containing .dlls and .pdbs>'
@@ -35,9 +38,10 @@ For all supported features, please see GitHub Docs on [managing alerts](https://
 ```
 
 ### Option 3 - Uploading results as an artifact
+
 ```yml
 - name: Run Infer#      
-  uses: microsoft/infersharpaction@v1.4.1
+  uses: microsoft/infersharpaction@v1.5
   id: runinfersharp
   with:
     binary-path: '<path to the binary directory containing .dlls and .pdbs>'
@@ -50,15 +54,23 @@ For all supported features, please see GitHub Docs on [managing alerts](https://
 ```
 
 ## Parameters
+
 ### `binary-path`
+
 **Required** Path to the binary directory containing .dlls **and** .pdbs.
 
+### `github-sarif`
+
+**Optional** If set to true, address issue <https://github.com/microsoft/infersharpaction/issues/51>
+
 ### `optional-flags`
-See https://fbinfer.com/docs/man-infer-run/#OPTIONS for the complete list.
+
+See <https://fbinfer.com/docs/man-infer-run/#OPTIONS> for the complete list.
 
 You can concatenate multiple flags with space.
 
 ## Limitations
+
 - GitHub does not currently support Linux containers hosted on Windows; your CI pipeline must run on Linux. If it doesn't, you may still apply the analyzer by creating a dependent workflow which transports the binaries to a Linux host on which to run the analysis.
 
 - If the project is too large, the analysis may time out.
@@ -66,13 +78,14 @@ You can concatenate multiple flags with space.
 - The analyzer may report warnings outside of your own code. This is because it runs on all input .pdbs, including those belonging to third-party library references. To prevent this, isolate the desired binaries in the input `binary-path` directory.
 
 ## Troubleshooting
+
 - Please see [here](https://github.com/microsoft/infersharp/blob/main/TROUBLESHOOTING.md) for troubleshooting tips.
 
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+the rights to use your contribution. For details, visit <https://cla.opensource.microsoft.com>.
 
 When you submit a pull request, a CLA bot will automatically determine whether you need to provide
 a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
