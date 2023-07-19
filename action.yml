@@ -10,6 +10,10 @@ inputs:
   optional-flags:
     description: 'Optional flags, see https://fbinfer.com/docs/man-infer-run/#OPTIONS for the complete list.'
     required: false
+  github-sarif:
+    description: 'If set true automaticaly address issue https://github.com/microsoft/infersharpaction/issues/51 and trasform absolute path in relative.'
+    required: false
+    default: 'false'
 outputs:
   results:
     description: 'The analysis results'
@@ -18,4 +22,5 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.binary-path }}
+    - ${{ inputs.github-sarif }}
     - ${{ inputs.optional-flags }}

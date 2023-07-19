@@ -20,6 +20,7 @@ jobs:
       uses: ./
       with:
         binary-path: 'Examples'
+        github-sarif: 'true'
 
     - name: Infer# analysis results
       run: cat infer-out/report.txt
@@ -28,7 +29,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: report
-        path: infer-out/report.txt
+        path: infer-out/report.*
     
     - name: Upload SARIF output to GitHub Security Center
       uses: github/codeql-action/upload-sarif@v2
